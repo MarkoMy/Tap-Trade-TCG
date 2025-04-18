@@ -40,7 +40,7 @@ class LoadingScreen : AppCompatActivity() {
 
     private fun loadConfigs() {
         GlobalScope.launch {
-            delay(5000)
+            delay(500)
             val intent = Intent(this@LoadingScreen, MainScreen::class.java)
             startActivity(intent)
             finish()

@@ -2,18 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <item
             android:id="@+id/nav_inventory"
-            android:icon="@drawable/ic_inventory"
+            android:icon="@drawable/inventory"
+            android:enabled="true"
             android:title="Inventory"/>
         <item
             android:id="@+id/nav_packs"
-            android:icon="@drawable/ic_packs"
+            android:icon="@drawable/packs"
+            android:enabled="true"
             android:title="Pack Nyitás"/>
         <item
             android:id="@+id/nav_tap"
-            android:icon="@drawable/ic_tap"
+            android:icon="@drawable/tap"
+            android:enabled="true"
             android:title="BIG Button"/>
         <item
             android:id="@+id/nav_trade"
-            android:icon="@drawable/ic_trade"
-            android:title="Trade"/>
+            android:icon="@drawable/trade"
+            android:enabled="true"
+            android:title="Trade" />
 </menu>
