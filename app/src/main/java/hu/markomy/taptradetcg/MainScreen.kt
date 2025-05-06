@@ -19,6 +19,7 @@ class MainScreen: AppCompatActivity() {
             insets
         }
 
+        TapManager.loadTapCount(this)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         // Kezdő Fragment betöltése
