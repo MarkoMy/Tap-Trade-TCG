@@ -21,6 +21,7 @@ class LoadingScreen : AppCompatActivity() {
             insets
         }
 
+        CardManager.initialize(this)
         val sharedPreferences = getSharedPreferences("hu.markomy.taptradetcg", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("username", null)
 
@@ -28,6 +29,7 @@ class LoadingScreen : AppCompatActivity() {
             Log.d("MainActivity", "User is not logged in")
             val bottomSheet = UsernameBottomSheet().apply{
                 onUsernameSetListener = {
+                    addTestCardToInventory()
                     loadConfigs()
                 }
             }
@@ -40,10 +42,24 @@ class LoadingScreen : AppCompatActivity() {
 
     private fun loadConfigs() {
         GlobalScope.launch {
-            delay(500)
+            //delay(500)
             val intent = Intent(this@LoadingScreen, MainScreen::class.java)
             startActivity(intent)
             finish()
+        }
+    }
+    private fun addTestCardToInventory() {
+        val db = AppDatabase.getInstance(this)
+        val cardDao = db.cardDao()
+        GlobalScope.launch {
+            // Teszt kártya hozzáadása
+            cardDao.insert(PlayerCard(cardId = 1, count = 1))
+            // Inventory lekérdezése
+            val cards = cardDao.getAll()
+            Log.d("Inventory", "Inventory count: ${cards.size}")
+            cards.forEach { card ->
+                Log.d("Inventory", "Card: id=${card.cardId}, count=${card.count}")
+            }
         }
     }
 }
