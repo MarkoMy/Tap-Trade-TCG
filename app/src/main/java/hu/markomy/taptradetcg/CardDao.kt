@@ -11,5 +11,8 @@ interface CardDao {
     suspend fun insert(card: PlayerCard)
 
     @Update
-    suspend fun update(card: PlayerCard)
+    suspend fun update(playerCard: PlayerCard)
+
+    @Query("SELECT * FROM player_cards WHERE cardId = :cardId LIMIT 1")
+    suspend fun getPlayerCardByCardId(cardId: Int): PlayerCard?
 }

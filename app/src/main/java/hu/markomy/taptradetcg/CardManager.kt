@@ -33,7 +33,7 @@ object CardManager {
         addCard(22, "Ban-She Princess", "022.png", "Grey")
         addCard(23, "Ban-She Queen", "023.png", "Grey")
         //adding a test card
-        addCard(24, "Test Card", R.drawable.tap, "Test")
+        //addCard(24, "Test Card", R.drawable.tap, "Test")
     }
 
     private fun addCard(id: Int, name: String, imageName: String, rarity: String) {

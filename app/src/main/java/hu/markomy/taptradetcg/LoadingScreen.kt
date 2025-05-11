@@ -29,7 +29,7 @@ class LoadingScreen : AppCompatActivity() {
             Log.d("MainActivity", "User is not logged in")
             val bottomSheet = UsernameBottomSheet().apply{
                 onUsernameSetListener = {
-                    addTestCardToInventory()
+                    //addTestCardToInventory()
                     loadConfigs()
                 }
             }

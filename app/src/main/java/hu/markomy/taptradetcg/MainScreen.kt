@@ -52,4 +52,14 @@ class MainScreen: AppCompatActivity() {
         val packsCountTextView = findViewById<TextView>(R.id.packsCount)
         packsCountTextView.text = PackManager.packsCount.toString()
     }
+
+    override fun onPause() {
+        super.onPause()
+        PackManager.savePacksCount(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        PackManager.savePacksCount(this)
+    }
 }

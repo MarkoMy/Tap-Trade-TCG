@@ -15,4 +15,5 @@
     <string name="open_pack_menu">Open pack</string>
     <string name="big_button_menu">Clicker</string>
     <string name="trade_menu">Trade</string>
+    <string name="card_name_dialog_card">Card Name</string>
 </resources>

@@ -30,13 +30,11 @@ object PackManager {
         Log.d(TAG, "Pack added! New count: $_packsCount")
     }
 
-    fun openPack(): Boolean {
+    fun openPack() {
         if (_packsCount > 0) {
             _packsCount--
             Log.d(TAG, "Pack opened. Remaining packs: $_packsCount")
-            return true
         }
         Log.d(TAG, "Cannot open pack. No packs available.")
-        return false
     }
 }
