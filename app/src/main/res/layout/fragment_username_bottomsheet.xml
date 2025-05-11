@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add meg a felhasználóneved:"
+        android:text="@string/req_player_name"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -16,12 +16,12 @@
         android:id="@+id/usernameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Felhasználónév" />
+        android:hint="@string/username_text" />
 
     <Button
         android:id="@+id/btnSaveUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mentés" />
+        android:text="@string/save_text" />
 
 </LinearLayout>

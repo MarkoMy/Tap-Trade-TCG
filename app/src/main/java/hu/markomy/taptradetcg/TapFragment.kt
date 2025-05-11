@@ -36,7 +36,10 @@ class TapFragment: Fragment() {
             updateTapCounter()
 
             if (rewardAchieved) {
-                // Itt lehet további UI-műveleteket végezni, ha szükséges
+                // Hozzáadunk egyet a tapcounthoz, és frissítsük a UI-t
+                //PackManager.addPack()
+                //PackManager.savePacksCount(requireContext())
+                (activity as? MainScreen)?.updatePacksCount()
             }
         }
     }

@@ -17,6 +17,6 @@
         android:clipToPadding="false"
         android:padding="8dp"
         tools:listitem="@layout/inventory_item"
-        android:background="@android:color/darker_gray"/>
+        android:background="@color/background_gray"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

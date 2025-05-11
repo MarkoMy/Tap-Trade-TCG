@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Tap &amp; Trade TCG</string>
     <string name="card_image">Card Image</string>
+    <string name="pack_image">Pack image</string>
+    <string name="open_pack_string">Tap to open a pack!</string>
+    <string name="req_player_name">Tell me your username!</string>
+    <string name="username_text">Username</string>
+    <string name="save_text">Save</string>
+    <string name="inv_item_count_text">x1</string>
+    <string name="loading_text">Loading…</string>
+    <string name="pack_count_num">0</string>
+    <string name="tap_this_image">Tap this image</string>
+    <string name="tap_count_num">Taps: 0</string>
+    <string name="inventory_menu">Inventory</string>
+    <string name="open_pack_menu">Open pack</string>
+    <string name="big_button_menu">Clicker</string>
+    <string name="trade_menu">Trade</string>
 </resources>

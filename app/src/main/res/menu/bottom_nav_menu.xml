@@ -4,20 +4,20 @@
             android:id="@+id/nav_inventory"
             android:icon="@drawable/inventory"
             android:enabled="true"
-            android:title="Inventory"/>
+            android:title="@string/inventory_menu"/>
         <item
             android:id="@+id/nav_packs"
             android:icon="@drawable/packs"
             android:enabled="true"
-            android:title="Pack Nyitás"/>
+            android:title="@string/open_pack_menu"/>
         <item
             android:id="@+id/nav_tap"
             android:icon="@drawable/tap"
             android:enabled="true"
-            android:title="BIG Button"/>
+            android:title="@string/big_button_menu"/>
         <item
             android:id="@+id/nav_trade"
             android:icon="@drawable/trade"
             android:enabled="true"
-            android:title="Trade" />
+            android:title="@string/trade_menu" />
 </menu>

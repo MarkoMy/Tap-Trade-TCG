@@ -53,12 +53,20 @@ class LoadingScreen : AppCompatActivity() {
         val cardDao = db.cardDao()
         GlobalScope.launch {
             // Teszt kártya hozzáadása
-            cardDao.insert(PlayerCard(cardId = 1, count = 1))
+            addTestCards(6, cardDao)
             // Inventory lekérdezése
             val cards = cardDao.getAll()
             Log.d("Inventory", "Inventory count: ${cards.size}")
             cards.forEach { card ->
                 Log.d("Inventory", "Card: id=${card.cardId}, count=${card.count}")
+            }
+        }
+    }
+
+    private fun addTestCards(num: Int, cardDao: CardDao) {
+        GlobalScope.launch {
+            for(i in 1..num){
+                cardDao.insert(PlayerCard(cardId = i, count = i+1))
             }
         }
     }

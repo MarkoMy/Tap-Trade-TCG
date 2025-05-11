@@ -1,6 +1,7 @@
 package hu.markomy.taptradetcg
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,8 +21,12 @@ class MainScreen: AppCompatActivity() {
         }
 
         TapManager.loadTapCount(this)
+        PackManager.loadPackCount(this)
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
+        val packsCountTextView = findViewById<TextView>(R.id.packsCount)
+        packsCountTextView.text = PackManager.packsCount.toString()
         // Kezdő Fragment betöltése
         loadFragment(InventoryFragment())
 
@@ -41,5 +46,10 @@ class MainScreen: AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commit()
+    }
+
+    fun updatePacksCount() {
+        val packsCountTextView = findViewById<TextView>(R.id.packsCount)
+        packsCountTextView.text = PackManager.packsCount.toString()
     }
 }
