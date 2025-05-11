@@ -8,7 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class InventoryAdapter(
-    private var cards: List<Pair<Card, Int>>
+    private var cards: List<Pair<Card, Int>>,
+    private val onCardClick: (Card, Int) -> Unit
 ) : RecyclerView.Adapter<InventoryAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -28,6 +29,7 @@ class InventoryAdapter(
         val (card, count) = cards[position]
         CardManager.loadCardImage(holder.itemView.context, card, holder.cardImage)
         holder.cardCount.text = "x$count"
+        holder.itemView.setOnClickListener { onCardClick(card, count) }
     }
 
     fun updateData(newCards: List<Pair<Card, Int>>) {

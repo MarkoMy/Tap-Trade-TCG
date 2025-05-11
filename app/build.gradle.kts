@@ -59,6 +59,7 @@ dependencies {
     implementation("androidx.room:room-ktx:2.7.1")
     implementation(libs.core.ktx)
     implementation(libs.androidx.junit.ktx)
+    implementation(libs.play.services.nearby)
     kapt("androidx.room:room-compiler:2.7.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
