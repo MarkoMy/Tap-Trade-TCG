@@ -10,6 +10,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.rule.GrantPermissionRule
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -17,6 +18,17 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class FullFlowTest {
+
+    @get:Rule
+    val permissionRule: GrantPermissionRule = GrantPermissionRule.grant(
+        android.Manifest.permission.NEARBY_WIFI_DEVICES,
+        android.Manifest.permission.POST_NOTIFICATIONS,
+        android.Manifest.permission.BLUETOOTH_SCAN,
+        android.Manifest.permission.BLUETOOTH_ADVERTISE,
+        android.Manifest.permission.BLUETOOTH_CONNECT,
+        android.Manifest.permission.ACCESS_COARSE_LOCATION,
+        android.Manifest.permission.ACCESS_FINE_LOCATION
+    )
 
     @get:Rule
     val activityRule = ActivityTestRule(LoadingScreen::class.java)

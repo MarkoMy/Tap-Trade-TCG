@@ -27,4 +27,18 @@
     <string name="received_card">Received card #%1$d!</string>
     <string name="searching_for_players">Searching for nearby players...</string>
     <string name="ondisconnect">Trade was successful!</string>
+
+    <string name="tutorial_desc">
+    In this game, you can open packs, collect cards, and trade with other players.
+    To get started, tap the pack image to open your first pack.
+    You can get 1 free pack every 6 hours.
+    You can also earn packs in the clicker game — every 100 taps gives you one pack to help grow your collection.
+    </string>
+    <string name="tutorial_title">Welcome to Tap &amp; Trade TCG!</string>
+    <string name="tutorial_okay">Got it!</string>
+    <string name="no_packs_title">No Packs</string>
+    <string name="no_packs_message">You have no packs to open.</string>
+    <string name="card_opened_title">You got a card!</string>
+    <string name="card_opened_button">Next</string>
+    <string name="tapcounter_text">"Taps: %1$s"</string>
 </resources>

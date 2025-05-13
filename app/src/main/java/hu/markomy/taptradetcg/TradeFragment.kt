@@ -1,7 +1,13 @@
 package hu.markomy.taptradetcg
 
+import android.Manifest
 import android.app.AlertDialog
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.*
 import kotlinx.coroutines.launch
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.nearby.Nearby
 import com.google.android.gms.nearby.connection.ConnectionsClient
 import com.google.android.gms.nearby.connection.AdvertisingOptions
@@ -35,6 +42,9 @@ class TradeFragment : Fragment() {
     private var myNickname: String = ""
     private var nearbyDialogShown = false
     private var nearbyPlayersDialog: AlertDialog? = null
+    private val foundDevices = mutableListOf<BluetoothDevice>()
+    private val deviceNames = mutableListOf<String>()
+    private var discoveryReceiver: BroadcastReceiver? = null
 
 
     override fun onCreateView(
@@ -191,11 +201,63 @@ class TradeFragment : Fragment() {
                 connectionsClient.stopDiscovery()
                 connectionsClient.stopAdvertising()
             }
+            else {
+                // Connection failed, try Bluetooth pairing fallback
+                Toast.makeText(requireContext(), "Nearby connection failed. Trying Bluetooth pairing...", Toast.LENGTH_SHORT).show()
+                startBluetoothPairing()
+            }
         }
         override fun onDisconnected(endpointId: String) {
             //For test purposes
             //Toast.makeText(requireContext(), "Disconnected from player.", Toast.LENGTH_SHORT).show()
             Toast.makeText(requireContext(), requireContext().getString(R.string.ondisconnect), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun startBluetoothPairing() {
+        val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+        if (bluetoothAdapter == null) {
+            Toast.makeText(requireContext(), "Bluetooth not supported", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (!bluetoothAdapter.isEnabled) {
+            // Optionally prompt user to enable Bluetooth
+            Toast.makeText(requireContext(), "Please enable Bluetooth", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                requestPermissions(arrayOf(Manifest.permission.BLUETOOTH_SCAN), 1001)
+            }
+            return
+        }
+
+        foundDevices.clear()
+        deviceNames.clear()
+        discoveryReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: android.content.Intent) {
+                if (BluetoothDevice.ACTION_FOUND == intent.action) {
+                    val device: BluetoothDevice? = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
+                    device?.let {
+                        foundDevices.add(it)
+                        deviceNames.add(it.name ?: it.address)
+                    }
+                }
+            }
+        }
+        requireContext().registerReceiver(discoveryReceiver, android.content.IntentFilter(BluetoothDevice.ACTION_FOUND))
+        bluetoothAdapter.startDiscovery()
+
+        // After a short delay, show dialog
+        viewLifecycleOwner.lifecycleScope.launch {
+            kotlinx.coroutines.delay(5000) // Wait for some devices to be found
+            requireContext().unregisterReceiver(discoveryReceiver)
+            AlertDialog.Builder(requireContext())
+                .setTitle("Select device to pair")
+                .setItems(deviceNames.toTypedArray()) { _, which ->
+                    foundDevices[which].createBond()
+                }
+                .show()
         }
     }
 

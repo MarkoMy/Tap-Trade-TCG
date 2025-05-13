@@ -28,8 +28,8 @@ class PackOpeningFragment : Fragment() {
         openPackImage.setOnClickListener {
             if (PackManager.packsCount <= 0) {
                 AlertDialog.Builder(requireContext())
-                    .setTitle("No Packs")
-                    .setMessage("You have no packs to open.")
+                    .setTitle(getString(R.string.no_packs_title))
+                    .setMessage(getString(R.string.no_packs_message))
                     .setPositiveButton("OK", null)
                     .show()
                 return@setOnClickListener
@@ -75,9 +75,9 @@ class PackOpeningFragment : Fragment() {
         }
 
         AlertDialog.Builder(requireContext())
-            .setTitle("You got a card!")
+            .setTitle(getString(R.string.card_opened_title))
             .setView(dialogView)
-            .setPositiveButton("Next") { dialog, _ ->
+            .setPositiveButton(R.string.card_opened_button) { dialog, _ ->
                 dialog.dismiss()
                 showCardsSequentially(cardIds, index + 1)
             }

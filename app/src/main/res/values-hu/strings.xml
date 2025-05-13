@@ -28,4 +28,18 @@
     <string name="received_card">Kaptál egy kártyát: #%1$d!</string>
     <string name="searching_for_players">Közeli játékosok keresése…</string>
     <string name="ondisconnect">A csere sikeresen megtörtént!</string>
+
+    <string name="tutorial_desc">
+        Ebben a játékban csomagokat nyithatsz, kártyákat gyűjthetsz és kereskedhetsz más játékosokkal.
+        A kezdéshez koppints a csomag képre az első csomagod kinyitásához.
+        6 óránként 1 ingyen csomagot kaphatsz.
+        A csomagok kinyitásához és a gyűjteményed bővítéséhez a klikkelő játékban is kaphatsz csomagokat minden 100. nyomás után.
+    </string>
+    <string name="tutorial_title">Üdvözlünk a Tap &amp; Trade TCG játékban!</string>
+    <string name="tutorial_okay">Tovább!</string>
+    <string name="no_packs_title">No Packs</string>
+    <string name="no_packs_message">You have no packs to open.</string>
+    <string name="card_opened_title">You got a card!</string>
+    <string name="card_opened_button">Next</string>
+    <string name="tapcounter_text">"Taps: %1$s"</string>
 </resources>

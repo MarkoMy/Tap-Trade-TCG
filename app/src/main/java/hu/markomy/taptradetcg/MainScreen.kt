@@ -24,8 +24,18 @@ class MainScreen: AppCompatActivity() {
             insets
         }
 
-        TapManager.loadTapCount(this)
-        PackManager.loadPackCount(this)
+        val prefs = getSharedPreferences("hu.markomy.taptradetcg", Context.MODE_PRIVATE)
+        if (!prefs.getBoolean("tutorial_shown", false)) {
+            androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle(getString(R.string.tutorial_title))
+                .setMessage(getString(R.string.tutorial_desc))
+                .setPositiveButton(getString(R.string.tutorial_okay)) { dialog, _ ->
+                    prefs.edit().putBoolean("tutorial_shown", true).apply()
+                    dialog.dismiss()
+                }
+                .setCancelable(false)
+                .show()
+        }
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
@@ -42,6 +52,9 @@ class MainScreen: AppCompatActivity() {
             workRequest
         )
 
+        TapManager.loadTapCount(this)
+        PackManager.loadPackCount(this)
+
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_inventory -> loadFragment(InventoryFragment())
@@ -51,7 +64,6 @@ class MainScreen: AppCompatActivity() {
             }
             true
         }
-
     }
 
     private fun loadFragment(fragment: Fragment) {
@@ -73,5 +85,16 @@ class MainScreen: AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         PackManager.savePacksCount(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        PackManager.loadPackCount(this)
+        updatePacksCount()
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+        if (currentFragment is InventoryFragment) {
+            loadFragment(InventoryFragment())
+        }
     }
 }

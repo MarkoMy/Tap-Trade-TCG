@@ -15,7 +15,7 @@
     <EditText
         android:id="@+id/usernameInput"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="@string/username_text" />
 
     <Button

@@ -50,6 +50,6 @@ class TapFragment: Fragment() {
     }
 
     private fun updateTapCounter() {
-        tapCounterText.text = "Taps: ${TapManager.tapCount}"
+        tapCounterText.text = getString(R.string.tapcounter_text, TapManager.tapCount.toString())
     }
 }

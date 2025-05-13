@@ -41,9 +41,7 @@ class InventoryFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.inventoryRecyclerView)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         adapter = InventoryAdapter(emptyList()){ card, count ->
-
         }
-
         recyclerView.adapter = adapter
 
         loadInventory()

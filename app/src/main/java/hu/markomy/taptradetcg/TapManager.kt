@@ -6,7 +6,7 @@ import android.util.Log
 
 object TapManager {
     private const val TAG = "TapManager"
-    private const val MAX_TAP = 10
+    private const val MAX_TAP = 100
     private const val PREFS_NAME = "TapTradePrefs"
     private const val TAP_COUNT_KEY = "tapCount"
 

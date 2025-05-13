@@ -1,7 +1,7 @@
 package hu.markomy.taptradetcg
 
+import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.*
@@ -10,6 +10,23 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class UsernameBottomSheet : BottomSheetDialogFragment() {
     var onUsernameSetListener: (() -> Unit)? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        isCancelable = false
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState) as com.google.android.material.bottomsheet.BottomSheetDialog
+        dialog.setOnShowListener { dlg ->
+            val bottomSheet = (dlg as com.google.android.material.bottomsheet.BottomSheetDialog)
+                .findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            bottomSheet?.let {
+                com.google.android.material.bottomsheet.BottomSheetBehavior.from(it).isDraggable = false
+            }
+        }
+        return dialog
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

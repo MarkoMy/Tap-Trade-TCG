@@ -48,6 +48,7 @@ dependencies {
     // using glide for image loading
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("androidx.test:rules:1.5.0")
+    implementation ("com.google.android.material:material:1.11.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
