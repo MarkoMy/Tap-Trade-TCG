@@ -26,7 +26,6 @@ import com.google.android.gms.nearby.connection.PayloadCallback
 import com.google.android.gms.nearby.connection.PayloadTransferUpdate
 import com.google.android.gms.nearby.connection.Strategy
 
-// TradeFragment.kt
 class TradeFragment : Fragment() {
     private lateinit var adapter: InventoryAdapter
     private lateinit var connectionsClient: ConnectionsClient
@@ -58,8 +57,6 @@ class TradeFragment : Fragment() {
         recyclerView.adapter = adapter
         loadInventory()
     }
-
-
 
     private fun getNicknameFromPrefs(): String {
         val prefs = requireContext().getSharedPreferences("hu.markomy.taptradetcg", Context.MODE_PRIVATE)
@@ -198,6 +195,7 @@ class TradeFragment : Fragment() {
         override fun onDisconnected(endpointId: String) {
             //For test purposes
             //Toast.makeText(requireContext(), "Disconnected from player.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), requireContext().getString(R.string.ondisconnect), Toast.LENGTH_SHORT).show()
         }
     }
 

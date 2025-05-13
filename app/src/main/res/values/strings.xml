@@ -26,4 +26,5 @@
     <string name="card_sent_to_trade">Card sent for trade!</string>
     <string name="received_card">Received card #%1$d!</string>
     <string name="searching_for_players">Searching for nearby players...</string>
+    <string name="ondisconnect">Trade was successful!</string>
 </resources>
