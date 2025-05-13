@@ -51,6 +51,10 @@ class LoadingScreen : AppCompatActivity() {
                 android.content.pm.PackageManager.PERMISSION_GRANTED) {
                 permissionsToRequest.add(android.Manifest.permission.NEARBY_WIFI_DEVICES)
             }
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) !=
+                android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(android.Manifest.permission.POST_NOTIFICATIONS)
+            }
         }
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
             if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_SCAN) !=
@@ -74,6 +78,7 @@ class LoadingScreen : AppCompatActivity() {
             android.content.pm.PackageManager.PERMISSION_GRANTED) {
             permissionsToRequest.add(android.Manifest.permission.ACCESS_FINE_LOCATION)
         }
+
 
         if (permissionsToRequest.isNotEmpty()) {
             requestPermissions(permissionsToRequest.toTypedArray(), 1001)

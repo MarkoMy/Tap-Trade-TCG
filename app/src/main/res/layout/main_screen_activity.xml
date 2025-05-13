@@ -29,7 +29,7 @@
             android:id="@+id/packsIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/packs"
+            android:src="@mipmap/ic_card_backside"
             android:contentDescription="@string/pack_image" />
 
         <TextView

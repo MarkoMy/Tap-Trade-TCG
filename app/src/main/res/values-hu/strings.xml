@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tap &amp; Trade TCG</string>
+    <string name="card_image">Kártya képe</string>
+    <string name="pack_image">Csomag képe</string>
+    <string name="open_pack_string">Koppints a csomag nyitásához!</string>
+    <string name="req_player_name">Add meg a felhasználóneved!</string>
+    <string name="username_text">Felhasználónév</string>
+    <string name="save_text">Mentés</string>
+    <string name="inv_item_count_text">x1</string>
+    <string name="loading_text">Betöltés…</string>
+    <string name="pack_count_num">0</string>
+    <string name="tap_this_image">Koppints erre a képre</string>
+    <string name="tap_count_num">Koppintások: 0</string>
+    <string name="inventory_menu">Gyüjtemény</string>
+    <string name="open_pack_menu">Csomagnyitás</string>
+    <string name="big_button_menu">Klikker</string>
+    <string name="trade_menu">Csere</string>
+    <string name="card_name_dialog_card">Kártya neve</string>
+    <string name="pack_reminder_text">Megkaptad a 4 ingyen csomagod! Nyisd ki gyorsan!</string>
+    <string name="trade_card_title">Elcseréled ezt a kártyát?</string>
+    <string name="trade_card_yes">Igen</string>
+    <string name="trade_card_no">Nem</string>
+    <string name="select_player_to_trade_with">Válassz játékost a cseréhez</string>
+    <string name="trade_request">Csere kérés</string>
+    <string name="trade_with_player">Cserélsz vele: %1$s?</string>
+    <string name="card_sent_to_trade">Kártya elküldve cserére!</string>
+    <string name="received_card">Kaptál egy kártyát: #%1$d!</string>
+    <string name="searching_for_players">Közeli játékosok keresése…</string>
+</resources>

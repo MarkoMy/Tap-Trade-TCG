@@ -1,5 +1,6 @@
 package hu.markomy.taptradetcg
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -7,7 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.concurrent.TimeUnit
 
 class MainScreen: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +33,14 @@ class MainScreen: AppCompatActivity() {
         packsCountTextView.text = PackManager.packsCount.toString()
         // Kezdő Fragment betöltése
         loadFragment(InventoryFragment())
+
+        // Periodic WorkManager beállítása 6 óránkénti futtatásra, adjon hozzá egy új csomagot
+        val workRequest = PeriodicWorkRequestBuilder<PackWorker>(6, TimeUnit.HOURS).build()
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+            "PackWorker",
+            androidx.work.ExistingPeriodicWorkPolicy.KEEP,
+            workRequest
+        )
 
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

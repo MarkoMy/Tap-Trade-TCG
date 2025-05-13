@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/tapFragment">
+    android:id="@+id/tapFragment"
+    android:background="@color/background_gray">
 
     <ImageView
         android:id="@+id/tapImage"
@@ -23,6 +24,7 @@
         android:text="@string/tap_count_num"
         android:textSize="30sp"
         android:layout_marginTop="32dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tapImage" />

@@ -87,14 +87,14 @@ class TradeFragment : Fragment() {
         cardName.text = card.name
 
         AlertDialog.Builder(requireContext())
-            .setTitle("Trade this card?")
+            .setTitle(requireContext().getString(R.string.trade_card_title))
             .setView(dialogView)
-            .setPositiveButton("Yes") { _, _ ->
+            .setPositiveButton(requireContext().getString(R.string.trade_card_yes)) { _, _ ->
                 selectedCardForTrade = card
                 startNearbyDiscovery()
-                Toast.makeText(requireContext(), "Searching for nearby players...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), requireContext().getString(R.string.searching_for_players), Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton("No", null)
+            .setNegativeButton(requireContext().getString(R.string.trade_card_no), null)
             .show()
     }
 
@@ -139,7 +139,7 @@ class TradeFragment : Fragment() {
 
     private fun showNearbyPlayersDialog() {
         nearbyPlayersDialog = AlertDialog.Builder(requireContext())
-            .setTitle("Select a player to trade with")
+            .setTitle(requireContext().getString(R.string.select_player_to_trade_with))
             .setItems(nearbyNicknames.toTypedArray()) { _, which ->
                 val selectedNickname = nearbyNicknames[which]
                 val endpointId = endpointIdToNickname.entries.first { it.value == selectedNickname }.key
@@ -158,12 +158,12 @@ class TradeFragment : Fragment() {
             nearbyPlayersDialog = null
 
             AlertDialog.Builder(requireContext())
-                .setTitle("Trade request")
-                .setMessage("Do you want to trade with ${info.endpointName}?")
-                .setPositiveButton("Yes") { _, _ ->
+                .setTitle(requireContext().getString(R.string.trade_request))
+                .setMessage(requireContext().getString(R.string.trade_with_player, info.endpointName))
+                .setPositiveButton(requireContext().getString(R.string.trade_card_yes)) { _, _ ->
                     connectionsClient.acceptConnection(endpointId, payloadCallback)
                 }
-                .setNegativeButton("No") { _, _ ->
+                .setNegativeButton(requireContext().getString(R.string.trade_card_no)) { _, _ ->
                     connectionsClient.rejectConnection(endpointId)
                 }
                 .show()
@@ -174,7 +174,7 @@ class TradeFragment : Fragment() {
                 selectedCardForTrade?.let { card ->
                     val payload = Payload.fromBytes(card.id.toString().toByteArray())
                     connectionsClient.sendPayload(endpointId, payload)
-                    Toast.makeText(requireContext(), "Card sent for trade!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), requireContext().getString(R.string.card_sent_to_trade), Toast.LENGTH_SHORT).show()
 
                     // Remove the card from your own inventory
                     lifecycleScope.launch {
@@ -196,7 +196,8 @@ class TradeFragment : Fragment() {
             }
         }
         override fun onDisconnected(endpointId: String) {
-            Toast.makeText(requireContext(), "Disconnected from player.", Toast.LENGTH_SHORT).show()
+            //For test purposes
+            //Toast.makeText(requireContext(), "Disconnected from player.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -215,7 +216,7 @@ class TradeFragment : Fragment() {
                         cardDao.insert(PlayerCard(cardId = cardId, count = 1))
                     }
                     loadInventory()
-                    Toast.makeText(requireContext(), "Received card #$cardId!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.received_card, cardId), Toast.LENGTH_SHORT).show()
                 }
             }
         }
