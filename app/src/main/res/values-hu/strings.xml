@@ -46,4 +46,7 @@
     <string name="card_rarity_placeholder">card rarity placeholder</string>
     <string name="card_name">Neve: %1$s</string>
     <string name="card_rarity">Ritkasága: %1$s</string>
+    <string name="permission_required">Engedélyek szükségesek</string>
+    <string name="permission_rationale">Néhány funkció korlátozott lesz a kért engedélyek nélkül. Engedélyezheted őket a Beállításokban.</string>
+    <string name="open_settings">Beállítások megnyitása</string>
 </resources>
