@@ -37,9 +37,9 @@
     </string>
     <string name="tutorial_title">Üdvözlünk a Tap &amp; Trade TCG játékban!</string>
     <string name="tutorial_okay">Tovább!</string>
-    <string name="no_packs_title">No Packs</string>
-    <string name="no_packs_message">You have no packs to open.</string>
-    <string name="card_opened_title">You got a card!</string>
-    <string name="card_opened_button">Next</string>
-    <string name="tapcounter_text">"Taps: %1$s"</string>
+    <string name="no_packs_title">Nincsenek csomagok</string>
+    <string name="no_packs_message">Nincs nyitható csomagod.</string>
+    <string name="card_opened_title">Kártyát kaptál!</string>
+    <string name="card_opened_button">Tovább</string>
+    <string name="tapcounter_text">"Koppintások: %1$s"</string>
 </resources>

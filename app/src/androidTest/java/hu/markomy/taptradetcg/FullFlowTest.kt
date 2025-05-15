@@ -34,33 +34,40 @@ class FullFlowTest {
     val activityRule = ActivityTestRule(LoadingScreen::class.java)
 
     @Test
-    fun fullUserFlow_addCardAndShowInventory() {
-        // 1. Fill in username and submit
-        onView(withId(R.id.usernameInput)).perform(typeText("TestUser"), closeSoftKeyboard())
-        onView(withId(R.id.btnSaveUsername)).perform(click())
+    fun fullUserFlow_openPacksAndTapForFreePack() {
+        // 1. Enter username
+        onView(withId(R.id.usernameInput))
+            .perform(typeText("TestUser"), closeSoftKeyboard())
+        onView(withId(R.id.btnSaveUsername))
+            .perform(click())
 
-        // 2. Wait for main screen to load (wait for bottomNavigationView)
-        Thread.sleep(1000)
-        onView(withId(R.id.bottomNavigationView)).check(matches(isDisplayed()))
+        // Tutorial dialog
+        onView(withText(R.string.tutorial_title))
+            .check(matches(isDisplayed()))
+        onView(withText(R.string.tutorial_okay))
+            .perform(click())
 
-        // 3. Add a card to the database
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        val db = Room.databaseBuilder(context, AppDatabase::class.java, "test-db")
-            .allowMainThreadQueries().build()
-        val card = PlayerCard(cardId = 1, count = 1)
-        kotlinx.coroutines.runBlocking {
-            Log.i("FullFlowTest", "Inserting card into database")
-            db.cardDao().insert(card)
-            val inventory = db.cardDao().getAll()
-            assertTrue(inventory.any { it.cardId == 1 && it.count == 1 })
-            Log.i("FullFlowTest", "Card inserted successfully")
+        // 2. Open initial pack and click through 5 cards
+        onView(withId(R.id.nav_packs)).perform(click())
+        Thread.sleep(500)
+        onView(withId(R.id.packImage)).perform(click())
+        repeat(5) {
+            onView(withText(R.string.card_opened_button)).perform(click())
         }
 
-        // 4. Navigate to Inventory fragment after switching into clicker fragment
+        // 3. Go to tap screen and click image 100×
         onView(withId(R.id.nav_tap)).perform(click())
-        onView(withId(R.id.nav_inventory)).perform(click())
+        Thread.sleep(500)
+        repeat(100) {
+            onView(withId(R.id.tapImage)).perform(click())
+        }
 
-        // 5. Wait to visually confirm
-        Thread.sleep(2000)
+        // 4. Open the free pack and click through 5 cards
+        onView(withId(R.id.nav_packs)).perform(click())
+        Thread.sleep(500)
+        onView(withId(R.id.packImage)).perform(click())
+        repeat(5) {
+            onView(withText("Next")).perform(click())
+        }
     }
 }
