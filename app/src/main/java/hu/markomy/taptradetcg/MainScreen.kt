@@ -37,23 +37,26 @@ class MainScreen: AppCompatActivity() {
                 .show()
         }
 
+        TapManager.loadTapCount(this)
+        PackManager.loadPackCount(this)
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         val packsCountTextView = findViewById<TextView>(R.id.packsCount)
         packsCountTextView.text = PackManager.packsCount.toString()
         // Kezdő Fragment betöltése
         loadFragment(InventoryFragment())
+        updatePacksCount()
 
         // Periodic WorkManager beállítása 6 óránkénti futtatásra, adjon hozzá egy új csomagot
-        val workRequest = PeriodicWorkRequestBuilder<PackWorker>(6, TimeUnit.HOURS).build()
+        val workRequest = PeriodicWorkRequestBuilder<PackWorker>(6, TimeUnit.HOURS)
+            .setInitialDelay(6, TimeUnit.HOURS) // To avoid getting 2 packs when game first time starts.
+            .build()
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
             "PackWorker",
             androidx.work.ExistingPeriodicWorkPolicy.KEEP,
             workRequest
         )
-
-        TapManager.loadTapCount(this)
-        PackManager.loadPackCount(this)
 
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import android.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -40,11 +43,29 @@ class InventoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.inventoryRecyclerView)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        adapter = InventoryAdapter(emptyList()){ card, count ->
+        adapter = InventoryAdapter(emptyList()) { card, _ ->
+            showCardInfoDialog(card)
         }
         recyclerView.adapter = adapter
 
         loadInventory()
+    }
+
+    private fun showCardInfoDialog(card: Card) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_card_info, null)
+        val imageView = dialogView.findViewById<ImageView>(R.id.dialogCardImage)
+        val nameView  = dialogView.findViewById<TextView>(R.id.dialogCardName)
+        val rarityView = dialogView.findViewById<TextView>(R.id.dialogCardRarity)
+
+        // load image and set texts
+        CardManager.loadCardImage(requireContext(), card, imageView)
+        nameView.text = getString(R.string.card_name, card.name)
+        rarityView.text = getString(R.string.card_rarity, card.rarity)
+
+        AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(true)
+            .show()
     }
 
     override fun onResume() {

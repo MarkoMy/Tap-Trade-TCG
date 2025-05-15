@@ -42,4 +42,8 @@
     <string name="card_opened_title">Kártyát kaptál!</string>
     <string name="card_opened_button">Tovább</string>
     <string name="tapcounter_text">"Koppintások: %1$s"</string>
+    <string name="card_name_placeholder">card name placeholder</string>
+    <string name="card_rarity_placeholder">card rarity placeholder</string>
+    <string name="card_name">Neve: %1$s</string>
+    <string name="card_rarity">Ritkasága: %1$s</string>
 </resources>

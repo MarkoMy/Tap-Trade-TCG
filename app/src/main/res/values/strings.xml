@@ -41,4 +41,8 @@
     <string name="card_opened_title">You got a card!</string>
     <string name="card_opened_button">Next</string>
     <string name="tapcounter_text">"Taps: %1$s"</string>
+    <string name="card_name_placeholder">card name placeholder</string>
+    <string name="card_rarity_placeholder">card rarity placeholder</string>
+    <string name="card_name">Name: %1$s</string>
+    <string name="card_rarity">Rarity: %1$s</string>
 </resources>
